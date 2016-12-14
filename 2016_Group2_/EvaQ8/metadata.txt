@@ -1,0 +1,39 @@
+# This file contains metadata for your plugin. Since 
+# version 2.0 of QGIS this is the proper way to supply 
+# information about a plugin. The old method of 
+# embedding metadata in __init__.py will 
+# is no longer supported since version 2.0.
+
+# This file should be included when you package your plugin.# Mandatory items:
+
+[general]
+name=EvaQ8
+qgisMinimumVersion=2.0
+description=SDSS system helping police officers evacuate buildings.
+version=0.1
+author=Lilia Angelova
+email=urb.lili.an@gmail.com
+
+about=This is a spatial decision support system designed to help the policemen evacuate buildings during fire incidents.
+
+tracker=Uknown
+repository=https://github.com/langelova/2016_Group2_EvaQ8
+# End of mandatory metadata
+
+# Recommended items:
+
+# Uncomment the following line and add your changelog:
+# changelog=
+
+# Tags are comma separated with spaces allowed
+tags=
+
+homepage=https://github.com/langelova/2016_Group2_EvaQ8
+category=Plugins
+icon=icon.png
+# experimental flag
+experimental=False
+
+# deprecated flag (applies to the whole plugin, not just a single version)
+deprecated=False
+
