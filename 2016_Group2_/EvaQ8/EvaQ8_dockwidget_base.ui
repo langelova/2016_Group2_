@@ -306,6 +306,13 @@ per Floor</string>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
+      <widget class="QPushButton" name="Navigation">
+       <property name="text">
+        <string>Navigation</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="Send_Location">
        <property name="text">
         <string>Send Location</string>
@@ -316,13 +323,6 @@ per Floor</string>
       <widget class="QPushButton" name="Police">
        <property name="text">
         <string>Police</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="Navigation">
-       <property name="text">
-        <string>Navigation</string>
        </property>
       </widget>
      </item>
