@@ -70,19 +70,19 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         #self.Main_table.setStyleSheet("QTableView {selection-background-color: red;}")
         self.main_table.resizeRowsToContents()
 
-    def getCanvasLayerByName(iface, name):
+    def getLegendLayerByName(iface, name):
         layer = None
-        for i in iface.mapCanvas().layers():
+        for i in iface.legendInterface().layers():
             if i.name() == name:
                 layer = i
         return layer
 
     def getAttributes(self,iface):
-        layer = getCanvasLayerByName(iface,"Buildings")
+        layer = getLegendLayerByName(self.iface,"Buildings")
         table = []
         for feature in layer.getFeatures():
             #get feature attributes
-            attr = feature.attrinutes()
+            attr = feature.attributes()
             coord = attr[1], attr[2]
             priority = attr[7]
             ref_attr = coord, priority
