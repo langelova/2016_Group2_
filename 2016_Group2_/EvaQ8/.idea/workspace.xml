@@ -20,7 +20,7 @@
     <favorites_list name="EvaQ8" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.66361976">
+    <splitter split-orientation="horizontal" split-proportion="0.5022915">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="EvaQ8.py" pinned="false" current-in-tab="false">
@@ -38,9 +38,11 @@
           <file leaf-file-name="EvaQ8_dockwidget.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/EvaQ8_dockwidget.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="402">
+                <state relative-caret-position="425">
                   <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-                  <folding />
+                  <folding>
+                    <element signature="e#1172#1181#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -62,7 +64,7 @@
           <file leaf-file-name="spatial_decision_dockwidget.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/../Template plugin/SpatialDecision/spatial_decision_dockwidget.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="17">
+                <state relative-caret-position="510">
                   <caret line="63" column="26" lean-forward="false" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
                   <folding>
                     <element signature="e#1180#1216#0" expanded="true" />
@@ -351,7 +353,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="782">
           <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1172#1181#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -387,7 +391,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="782">
           <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1172#1181#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -423,7 +429,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="782">
           <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1172#1181#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -459,7 +467,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1172#1181#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -495,7 +505,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1172#1181#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -531,7 +543,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1172#1181#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -567,7 +581,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1172#1181#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -603,7 +619,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1172#1181#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -660,7 +678,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../Template plugin/SpatialDecision/spatial_decision_dockwidget.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="510">
           <caret line="63" column="26" lean-forward="false" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
           <folding>
             <element signature="e#1180#1216#0" expanded="true" />
@@ -670,9 +688,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/EvaQ8_dockwidget.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
+        <state relative-caret-position="425">
           <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1172#1181#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
