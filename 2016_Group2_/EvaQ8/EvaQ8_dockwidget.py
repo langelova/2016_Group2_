@@ -52,3 +52,4 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.closingPlugin.emit()
         event.accept()
 
+
