@@ -48,9 +48,7 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
-
-        self.Main_table.activated.connect(self.getAttributes)
-
+        self.updateAttribute.connect(self.getAttributes)
 
     def closeEvent(self, event):
         self.closingPlugin.emit()
@@ -61,16 +59,16 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
 
 
     def getAttributes(self,iface):
-        layer = getLegendLayerByName(self.iface,"Buildings")
+        layer = getCanvasLayerByName(self.iface, "Buildings")
         table = []
         for feature in layer.getFeatures():
             #get feature attributes
-            #attr = feature.attributes()
-            #coord = attr[1], attr[2]
-            #priority = attr[7]
+            attr = feature.attributes()
+            coord = attr[1], attr[2]
+            priority = attr[7]
             #ref_attr = coord, priority
-            #table.append(ref_attr)
-            table.append((feature.id(), feature.attribute))
+            table.append((feature.id(), coord, priority))
+            #table.append((feature.id(), feature.attribute))
         self.clearTable()
         self.updateTable(table)
 
@@ -89,10 +87,4 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         #set background color of selected row
         #self.Main_table.setStyleSheet("QTableView {selection-background-color: red;}")
         self.Main_table.resizeRowsToContents()
-
-
-
-
-
-
 
