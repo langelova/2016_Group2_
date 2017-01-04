@@ -52,7 +52,23 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         # define globals
         self.iface = iface
         self.canvas = self.iface.mapCanvas()
+        self.LoadLayers()
         self.getAttributes()
+
+    def LoadLayers(self,filename=""):
+        scenario_open = False
+        scenario_file = os.path.join(u'D:\DELFT\SDSS\FINAL_DATA','FINAL_DATA','EvaQ8_project.qgs')
+        # check if file exists
+        if os.path.isfile(scenario_file):
+            self.iface.addProject(scenario_file)
+            scenario_open = True
+        else:
+            last_dir = getLastDir("SDSS")
+            new_file = QtGui.QFileDialog.getOpenFileName(self, "", last_dir, "(*.qgs)")
+            if new_file:
+                self.iface.addProject(unicode(new_file))
+                scenario_open = True
+
 
     def closeEvent(self, event):
         self.closingPlugin.emit()
