@@ -23,17 +23,18 @@
     <favorites_list name="EvaQ8" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.52723145">
+    <splitter split-orientation="horizontal" split-proportion="0.73727274">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="EvaQ8_dockwidget.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/EvaQ8_dockwidget.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-782">
-                  <caret line="25" column="10" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="10" />
+                <state relative-caret-position="527">
+                  <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
                   <folding>
                     <element signature="e#24#1170#1" expanded="false" />
-                    <element signature="e#1738#1780#0" expanded="false" />
+                    <element signature="e#1172#1181#0" expanded="true" />
+                    <element signature="e#1701#1743#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -58,8 +59,8 @@
           <file leaf-file-name="spatial_decision_dockwidget.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/../Template plugin/SpatialDecision/spatial_decision_dockwidget.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="138">
-                  <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="44" />
+                <state relative-caret-position="170">
+                  <caret line="160" column="47" selection-start-line="160" selection-start-column="34" selection-end-line="160" selection-end-column="47" />
                   <folding>
                     <element signature="e#24#1178#1" expanded="false" />
                     <element signature="e#1180#1216#0" expanded="true" />
@@ -76,8 +77,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/EvaQ8.py" />
         <option value="$PROJECT_DIR$/utility_functions.py" />
+        <option value="$PROJECT_DIR$/EvaQ8.py" />
         <option value="$PROJECT_DIR$/EvaQ8_dockwidget.py" />
       </list>
     </option>
@@ -119,6 +120,21 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="EvaQ8">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -139,21 +155,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="EvaQ8">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -416,13 +417,13 @@
     <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10514372" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16792738" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17478992" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26890758" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -454,11 +455,80 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/EvaQ8_dockwidget.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="81" column="79" selection-start-line="81" selection-start-column="79" selection-end-line="81" selection-end-column="79" />
+          <folding>
+            <element signature="e#24#1170#1" expanded="false" />
+            <element signature="e#1172#1181#0" expanded="true" />
+            <element signature="e#1701#1743#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Template plugin/SpatialDecision/utility_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1547">
+          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="96" selection-end-column="16" />
+          <folding>
+            <element signature="e#1170#1201#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Template plugin/SpatialDecision/spatial_decision_dockwidget.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#1178#1" expanded="false" />
+            <element signature="e#1180#1216#0" expanded="true" />
+            <element signature="e#2067#2109#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EvaQ8_dockwidget.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="25" column="10" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="10" />
+          <folding>
+            <element signature="e#24#1170#1" expanded="false" />
+            <element signature="e#1172#1181#0" expanded="true" />
+            <element signature="e#1701#1743#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Template plugin/SpatialDecision/utility_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1547">
+          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="96" selection-end-column="16" />
+          <folding>
+            <element signature="e#1170#1201#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Template plugin/SpatialDecision/spatial_decision_dockwidget.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#1178#1" expanded="false" />
+            <element signature="e#1180#1216#0" expanded="true" />
+            <element signature="e#2067#2109#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EvaQ8_dockwidget.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="850">
           <caret line="74" column="50" selection-start-line="74" selection-start-column="50" selection-end-line="74" selection-end-column="50" />
           <folding>
             <element signature="e#24#1170#1" expanded="false" />
-            <element signature="e#1738#1780#0" expanded="false" />
+            <element signature="e#1172#1181#0" expanded="true" />
+            <element signature="e#1701#1743#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -491,7 +561,8 @@
           <caret line="53" column="33" selection-start-line="53" selection-start-column="33" selection-end-line="53" selection-end-column="33" />
           <folding>
             <element signature="e#24#1170#1" expanded="false" />
-            <element signature="e#1738#1780#0" expanded="false" />
+            <element signature="e#1172#1181#0" expanded="true" />
+            <element signature="e#1701#1743#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -524,7 +595,8 @@
           <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
           <folding>
             <element signature="e#24#1170#1" expanded="false" />
-            <element signature="e#1738#1780#0" expanded="false" />
+            <element signature="e#1172#1181#0" expanded="true" />
+            <element signature="e#1701#1743#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -557,7 +629,8 @@
           <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
           <folding>
             <element signature="e#24#1170#1" expanded="false" />
-            <element signature="e#1738#1780#0" expanded="false" />
+            <element signature="e#1172#1181#0" expanded="true" />
+            <element signature="e#1701#1743#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -590,7 +663,8 @@
           <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding>
             <element signature="e#24#1170#1" expanded="false" />
-            <element signature="e#1738#1780#0" expanded="false" />
+            <element signature="e#1172#1181#0" expanded="true" />
+            <element signature="e#1701#1743#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -644,7 +718,8 @@
           <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
           <folding>
             <element signature="e#24#1170#1" expanded="false" />
-            <element signature="e#1738#1780#0" expanded="false" />
+            <element signature="e#1172#1181#0" expanded="true" />
+            <element signature="e#1701#1743#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -679,7 +754,8 @@
           <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding>
             <element signature="e#24#1170#1" expanded="false" />
-            <element signature="e#1738#1780#0" expanded="false" />
+            <element signature="e#1172#1181#0" expanded="true" />
+            <element signature="e#1701#1743#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -704,7 +780,8 @@
           <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding>
             <element signature="e#24#1170#1" expanded="false" />
-            <element signature="e#1738#1780#0" expanded="false" />
+            <element signature="e#1172#1181#0" expanded="true" />
+            <element signature="e#1701#1743#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -741,7 +818,8 @@
           <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding>
             <element signature="e#24#1170#1" expanded="false" />
-            <element signature="e#1738#1780#0" expanded="false" />
+            <element signature="e#1172#1181#0" expanded="true" />
+            <element signature="e#1701#1743#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -770,13 +848,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="180" column="21" selection-start-line="180" selection-start-column="21" selection-end-line="180" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EvaQ8.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2754">
-          <caret line="169" column="46" selection-start-line="169" selection-start-column="46" selection-end-line="169" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -836,25 +907,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Template plugin/SpatialDecision/spatial_decision_dockwidget.py">
+    <entry file="file://$PROJECT_DIR$/EvaQ8.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="44" />
-          <folding>
-            <element signature="e#24#1178#1" expanded="false" />
-            <element signature="e#1180#1216#0" expanded="true" />
-            <element signature="e#2067#2109#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="295">
+          <caret line="223" column="60" selection-start-line="223" selection-start-column="60" selection-end-line="223" selection-end-column="60" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/EvaQ8_dockwidget.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-782">
-          <caret line="25" column="10" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="10" />
+        <state relative-caret-position="527">
+          <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
           <folding>
             <element signature="e#24#1170#1" expanded="false" />
-            <element signature="e#1738#1780#0" expanded="false" />
+            <element signature="e#1172#1181#0" expanded="true" />
+            <element signature="e#1701#1743#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Template plugin/SpatialDecision/spatial_decision_dockwidget.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="160" column="47" selection-start-line="160" selection-start-column="34" selection-end-line="160" selection-end-column="47" />
+          <folding>
+            <element signature="e#24#1178#1" expanded="false" />
+            <element signature="e#1180#1216#0" expanded="true" />
+            <element signature="e#2067#2109#0" expanded="false" />
           </folding>
         </state>
       </provider>
