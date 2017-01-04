@@ -22,6 +22,7 @@
 """
 
 import os
+import csv
 
 from PyQt4 import QtGui, uic, QtCore
 from PyQt4.QtCore import pyqtSignal
@@ -49,50 +50,31 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
 
-        self.Main_table.activated.connect(self.getAttributes)
+
+        #report
+        self.Send_report.clicked.connect(self.sendReport)
 
 
     def closeEvent(self, event):
         self.closingPlugin.emit()
         event.accept()
 
-    def clearTable(self):
-        self.Main_table.clear()
 
+    # Report functions
 
-    def getAttributes(self,iface):
-        layer = getLegendLayerByName(self.iface,"Buildings")
-        table = []
-        for feature in layer.getFeatures():
-            #get feature attributes
-            #attr = feature.attributes()
-            #coord = attr[1], attr[2]
-            #priority = attr[7]
-            #ref_attr = coord, priority
-            #table.append(ref_attr)
-            table.append((feature.id(), feature.attribute))
-        self.clearTable()
-        self.updateTable(table)
-
-
-    def updateTable(self,values):
-        self.Main_table.setColumnCount(3)
-        self.Main_table.setHorizontalHeaderLabels(["Location","Priority","Officers at incident"])
-        self.Main_table.setRowCont(len(values))
-        for i, item in enumerate(values):
-            self.Main_table.setItem(i, 0, QtGui.QTableWidgetItem(str(item[0])))
-            self.Main_table.setItem(i, 1, QtGui.QTableWidgetItem(str(item[1])))
-        self.Main_table.horizontalHeader().setResizeMode(0, QtGui.QHeaderView.ResizeToContents)
-        self.Main_table.horizontalHeader().setResizeMode(1, QtGui.QHeaderView.ResizeToContents)
-        #hide grid
-        #self.Main_table.setShowGrid(False)
-        #set background color of selected row
-        #self.Main_table.setStyleSheet("QTableView {selection-background-color: red;}")
-        self.Main_table.resizeRowsToContents()
-
-
-
-
-
+    def sendReport(self):
+        path = QtGui.QFileDialog.getSaveFileName(self, 'Save File', '', 'CSV(*.csv)')
+        if path.strip() != "":
+            with open(unicode(path), 'wb') as report:
+                # write header
+                writer = csv.DictWriter(report, fieldnames=["Total People","Evacuated People","Injured People","Ambulances","Policemen"])
+                writer.writeheader()
+                # write data
+                totalpeople = self.lineEdit_T_People.text()
+                evacuated = self.lineEdit_Evacuated.text()
+                injured = self.lineEdit_Injured.text()
+                ambulances = self.lineEdit_Ambulances.text()
+                policemen = self.lineEdit_Policemen.text()
+                writer.writerow({"Total People": str(totalpeople),"Evacuated People": str(evacuated),"Injured People": str(injured),"Ambulances": str(ambulances),"Policemen": str(policemen)})
 
 
