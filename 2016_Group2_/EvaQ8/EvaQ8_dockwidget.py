@@ -37,9 +37,9 @@ FORM_CLASS, _ = uic.loadUiType(os.path.join(
 class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
 
     closingPlugin = pyqtSignal()
-    updateAttribute = QtCore.pyqtSignal(str)
 
-    def __init__(self, parent=None):
+
+    def __init__(self, iface, parent=None):
         """Constructor."""
         super(EvaQ8DockWidget, self).__init__(parent)
         # Set up the user interface from Designer.
@@ -48,7 +48,11 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
-        self.updateAttribute.connect(self.getAttributes)
+
+        # define globals
+        self.iface = iface
+        self.canvas = self.iface.mapCanvas()
+        self.getAttributes()
 
     def closeEvent(self, event):
         self.closingPlugin.emit()
@@ -58,33 +62,31 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.Main_table.clear()
 
 
-    def getAttributes(self,iface):
+    def getAttributes(self):
         layer = getCanvasLayerByName(self.iface, "Buildings")
         table = []
         for feature in layer.getFeatures():
             #get feature attributes
-            attr = feature.attributes()
-            coord = attr[1], attr[2]
-            priority = attr[7]
-            #ref_attr = coord, priority
-            table.append((feature.id(), coord, priority))
-            #table.append((feature.id(), feature.attribute))
+            #attr = feature.attributes()
+            coord = feature['X'], feature['y']
+            priority = feature['priority']
+            table.append((coord, priority))
         self.clearTable()
         self.updateTable(table)
 
 
     def updateTable(self,values):
-        self.Main_table.setColumnCount(3)
-        self.Main_table.setHorizontalHeaderLabels(["Location","Priority","Officers at incident"])
-        self.Main_table.setRowCont(len(values))
+        self.Main_table.setHorizontalHeaderLabels(["Location","Priority","Officer at place"])
+        self.Main_table.setRowCount(len(values))
         for i, item in enumerate(values):
             self.Main_table.setItem(i, 0, QtGui.QTableWidgetItem(str(item[0])))
             self.Main_table.setItem(i, 1, QtGui.QTableWidgetItem(str(item[1])))
         self.Main_table.horizontalHeader().setResizeMode(0, QtGui.QHeaderView.ResizeToContents)
         self.Main_table.horizontalHeader().setResizeMode(1, QtGui.QHeaderView.ResizeToContents)
+        self.Main_table.horizontalHeader().setResizeMode(2, QtGui.QHeaderView.Stretch)
         #hide grid
-        #self.Main_table.setShowGrid(False)
+        self.Main_table.setShowGrid(True)
         #set background color of selected row
-        #self.Main_table.setStyleSheet("QTableView {selection-background-color: red;}")
+        self.Main_table.setStyleSheet("QTableView {selection-background-color: red;}")
         self.Main_table.resizeRowsToContents()
 
