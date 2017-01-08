@@ -55,9 +55,10 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.LoadLayers()
         self.getAttributes()
 
+
     def LoadLayers(self,filename=""):
         scenario_open = False
-        scenario_file = os.path.join(u'D:\DELFT\SDSS\FINAL_DATA','FINAL_DATA','EvaQ8_project.qgs')
+        scenario_file = os.path.join(u'D:\DELFT\SDSS\FINAL_DATA','EvaQ8_project.qgs')
         # check if file exists
         if os.path.isfile(scenario_file):
             self.iface.addProject(scenario_file)
@@ -74,6 +75,7 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.closingPlugin.emit()
         event.accept()
 
+
     def clearTable(self):
         self.Main_table.clear()
 
@@ -83,8 +85,7 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         table = []
         for feature in layer.getFeatures():
             #get feature attributes
-            #attr = feature.attributes()
-            coord = feature['X'], feature['y']
+            coord = feature['X'], feature['Y']
             priority = feature['priority']
             table.append((coord, priority))
         self.clearTable()
@@ -105,4 +106,21 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         #set background color of selected row
         self.Main_table.setStyleSheet("QTableView {selection-background-color: red;}")
         self.Main_table.resizeRowsToContents()
+        self.Main_table.itemSelectionChanged.connect(self.Additional_info)
+
+    def Additional_info(self):
+        v = self.Main_table.selectedItems()[0].text()
+        coord = str(v[0])
+        #y = v[1]
+        layer = getCanvasLayerByName(self.iface, "Buildings")
+        feature = getFeaturesByListValues(layer,'X',coord)
+        self.Population_floor.setText(str(feature["P_per_F"]))
+        #self.Population_total.text(items)
+        #self.Building_type.text(str(items[0]))
+        #self.Floors.text(str(items[0]))
+
+
+
+
+
 
