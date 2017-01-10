@@ -52,13 +52,14 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         # define globals
         self.iface = iface
         self.canvas = self.iface.mapCanvas()
+        self.plugin_dir = os.path.dirname(__file__)
         self.LoadLayers()
         self.getAttributes()
 
 
     def LoadLayers(self,filename=""):
         scenario_open = False
-        scenario_file = os.path.join(u'D:\DELFT\SDSS\FINAL_DATA','EvaQ8_project.qgs')
+        scenario_file = self.plugin_dir+'/FINAL_DATA/EvaQ8_project.qgs'
         # check if file exists
         if os.path.isfile(scenario_file):
             self.iface.addProject(scenario_file)
@@ -110,14 +111,18 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
 
     def Additional_info(self):
         v = self.Main_table.selectedItems()[0].text()
-        coord = str(v[0])
-        #y = v[1]
+        next = v[1:-1]
+        t = next.split(",")
+        coord = float(t[0])
+
         layer = getCanvasLayerByName(self.iface, "Buildings")
-        feature = getFeaturesByListValues(layer,'X',coord)
-        self.Population_floor.setText(str(feature["P_per_F"]))
-        #self.Population_total.text(items)
-        #self.Building_type.text(str(items[0]))
-        #self.Floors.text(str(items[0]))
+        #feature = getFeaturesByListValues(layer,'X',coord)
+        feature = getFeaturesByExpression(layer,'"X"=%s'%coord)
+        l = feature.values()
+        self.Population_floor.setText(str(l[0][5]))
+        self.Population_total.setText(str(l[0][4]))
+        self.Building_type.setText(str(l[0][6]))
+        self.Floors.setText(str(l[0][3]))
 
 
 
