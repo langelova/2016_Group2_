@@ -354,14 +354,14 @@ Incident</string>
                </size>
               </property>
               <property name="readOnly">
-               <bool>true</bool>
+               <bool>false</bool>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QLineEdit" name="lineEdit_Injured">
               <property name="readOnly">
-               <bool>true</bool>
+               <bool>false</bool>
               </property>
              </widget>
             </item>
