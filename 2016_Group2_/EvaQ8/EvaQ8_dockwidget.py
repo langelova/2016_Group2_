@@ -110,19 +110,27 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.Main_table.itemSelectionChanged.connect(self.Additional_info)
 
     def Additional_info(self):
+        #get from the selected building it's x coordinate
         v = self.Main_table.selectedItems()[0].text()
         next = v[1:-1]
         t = next.split(",")
         coord = float(t[0])
-
+        #search in the layer for this feature
         layer = getCanvasLayerByName(self.iface, "Buildings")
-        #feature = getFeaturesByListValues(layer,'X',coord)
         feature = getFeaturesByExpression(layer,'"X"=%s'%coord)
+        #get all attributes of the feature
         l = feature.values()
+        #puting the ones needed in Additional info tab
         self.Population_floor.setText(str(l[0][5]))
         self.Population_total.setText(str(l[0][4]))
         self.Building_type.setText(str(l[0][6]))
         self.Floors.setText(str(l[0][3]))
+        #zoom to the selected feature
+        layer.setSelectedFeatures(feature.keys())
+        if layer.selectedFeatureCount() > 0:
+            self.iface.mapCanvas().setCurrentLayer(layer)
+            self.iface.mapCanvas().zoomToSelected()
+            #self.iface.mapCanvas().zoomOut()
 
 
 
