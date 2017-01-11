@@ -276,15 +276,15 @@ def updateField(layer, name, expression):
 # Feature functions
 #
 def getFeaturesByListValues(layer, name, values=list):
-    features = {}
+    features = []
     if layer:
         if fieldExists(layer, name):
-            request = QgsFeatureRequest().setSubsetOfAttributes([getFieldIndex(layer, name)])
-            iterator = layer.getFeatures(request)
+            #request = QgsFeatureRequest().setSubsetOfAttributes([getFieldIndex(layer, name)])
+            iterator = layer.getFeatures()
             for feature in iterator:
                 att = feature.attribute(name)
                 if att in values:
-                    features[feature.id()] = att
+                    features.append(feature)
     return features
 
 

@@ -52,12 +52,14 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         # define globals
         self.iface = iface
         self.canvas = self.iface.mapCanvas()
+        self.plugin_dir = os.path.dirname(__file__)
         self.LoadLayers()
         self.getAttributes()
 
+
     def LoadLayers(self,filename=""):
         scenario_open = False
-        scenario_file = os.path.join(u'D:\DELFT\SDSS\FINAL_DATA','FINAL_DATA','EvaQ8_project.qgs')
+        scenario_file = self.plugin_dir+'/FINAL_DATA/EvaQ8_project.qgs'
         # check if file exists
         if os.path.isfile(scenario_file):
             self.iface.addProject(scenario_file)
@@ -74,6 +76,7 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.closingPlugin.emit()
         event.accept()
 
+
     def clearTable(self):
         self.Main_table.clear()
 
@@ -83,8 +86,7 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         table = []
         for feature in layer.getFeatures():
             #get feature attributes
-            #attr = feature.attributes()
-            coord = feature['X'], feature['y']
+            coord = feature['X'], feature['Y']
             priority = feature['priority']
             table.append((coord, priority))
         self.clearTable()
@@ -105,4 +107,33 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         #set background color of selected row
         self.Main_table.setStyleSheet("QTableView {selection-background-color: red;}")
         self.Main_table.resizeRowsToContents()
+        self.Main_table.itemSelectionChanged.connect(self.Additional_info)
+
+    def Additional_info(self):
+        #get from the selected building it's x coordinate
+        v = self.Main_table.selectedItems()[0].text()
+        next = v[1:-1]
+        t = next.split(",")
+        coord = float(t[0])
+        #search in the layer for this feature
+        layer = getCanvasLayerByName(self.iface, "Buildings")
+        feature = getFeaturesByExpression(layer,'"X"=%s'%coord)
+        #get all attributes of the feature
+        l = feature.values()
+        #puting the ones needed in Additional info tab
+        self.Population_floor.setText(str(l[0][5]))
+        self.Population_total.setText(str(l[0][4]))
+        self.Building_type.setText(str(l[0][6]))
+        self.Floors.setText(str(l[0][3]))
+        #zoom to the selected feature
+        layer.setSelectedFeatures(feature.keys())
+        if layer.selectedFeatureCount() > 0:
+            self.iface.mapCanvas().setCurrentLayer(layer)
+            self.iface.mapCanvas().zoomToSelected()
+            #self.iface.mapCanvas().zoomOut()
+
+
+
+
+
 
