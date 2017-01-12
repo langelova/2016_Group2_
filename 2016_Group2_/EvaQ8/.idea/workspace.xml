@@ -38,8 +38,8 @@
           <file leaf-file-name="EvaQ8_dockwidget.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/EvaQ8_dockwidget.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="433">
-                  <caret line="74" column="35" lean-forward="false" selection-start-line="74" selection-start-column="35" selection-end-line="74" selection-end-column="35" />
+                <state relative-caret-position="221">
+                  <caret line="72" column="0" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
                   <folding>
                     <element signature="e#1172#1181#0" expanded="true" />
                   </folding>
@@ -347,7 +347,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1378" height="744" extended-state="1" />
+    <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14390603" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -847,8 +847,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/EvaQ8_dockwidget.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="74" column="35" lean-forward="false" selection-start-line="74" selection-start-column="35" selection-end-line="74" selection-end-column="35" />
+        <state relative-caret-position="221">
+          <caret line="72" column="0" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
           <folding>
             <element signature="e#1172#1181#0" expanded="true" />
           </folding>
