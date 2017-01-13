@@ -22,6 +22,7 @@
 """
 
 import os
+import csv
 
 from PyQt4 import QtGui, uic, QtCore
 from PyQt4.QtCore import pyqtSignal
@@ -48,6 +49,9 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
+        self.Police.clicked.connect(self.getPolice)
+        self.Ambulance.clicked.connect(self.getAmbulance)
+
 
         # define globals
         self.iface = iface
@@ -55,6 +59,56 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.plugin_dir = os.path.dirname(__file__)
         self.LoadLayers()
         self.getAttributes()
+        self.Send_Location.clicked.connect(self.sendLocation)
+
+
+
+        #self.Navigation.clicked.connect(self.startnavigation)
+        self.graph = QgsGraph()
+        self.tied_points = []
+        self.roads_layer = getLegendLayerByName(self.iface, 'ROAD_NETWORK')
+        self.current_location = None
+
+        # report
+        self.createCSV()
+        self.Send_report.clicked.connect(self.sendReport)
+
+    def getPolice(self):
+        # self.textEdit.setTextColor(QtGui.QColor.setblue(255))
+        self.textEdit.setText('Police are on their way!')
+
+        current_text = self.lineEdit_Policemen.text()
+        if current_text == '':
+            current_count = 0
+        else:
+            current_count = int(current_text)
+        self.lineEdit_Policemen.setText(str(current_count + 1))
+
+
+    def getAmbulance(self):
+        # self.textEdit.setTextColor(QtGui.QColor.setred(255))
+        self.textEdit.setText('An ambulance is on its way!')
+
+        current_text = self.lineEdit_Ambulances.text()
+        if current_text == '':
+            current_count = 0
+        else:
+            current_count = int(current_text)
+        self.lineEdit_Ambulances.setText(str(current_count + 1))
+
+
+    def sendLocation(self):
+        try:
+            current_row = self.Main_table.currentRow()
+            self.current_location = current_row
+            update_item = self.Main_table.item(current_row, 2)
+            current_count = int(update_item.text())
+            update_item.setText(str(current_count + 1))
+            self.Main_table.setItem(current_row, 2, update_item)
+        except:
+            pass
+
+
 
 
     def LoadLayers(self,filename=""):
@@ -105,6 +159,7 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         for i, item in enumerate(values):
             self.Main_table.setItem(i, 0, QtGui.QTableWidgetItem(str(item[0])))
             self.Main_table.setItem(i, 1, QtGui.QTableWidgetItem(str(item[1])))
+            self.Main_table.setItem(i, 2, QtGui.QTableWidgetItem(str(0)))
         self.Main_table.horizontalHeader().setResizeMode(0, QtGui.QHeaderView.ResizeToContents)
         self.Main_table.horizontalHeader().setResizeMode(1, QtGui.QHeaderView.ResizeToContents)
         self.Main_table.horizontalHeader().setResizeMode(2, QtGui.QHeaderView.Stretch)
@@ -114,6 +169,7 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.Main_table.setStyleSheet("QTableView {selection-background-color: red;}")
         self.Main_table.resizeRowsToContents()
         self.Main_table.itemSelectionChanged.connect(self.Additional_info)
+        self.Main_table.itemSelectionChanged.connect(self.createReport)
 
     def Additional_info(self):
         #get from the selected building it's x coordinate
@@ -138,6 +194,43 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
             self.iface.mapCanvas().zoomToSelected()
             #self.iface.mapCanvas().zoomOut()
 
+
+# Report functions
+
+    def createReport(self):
+        items = self.Main_table.selectedItems()[0].text()
+        next = items[1:-1]
+        attr = next.split(",")
+        coord = float(attr[0])
+        # search in the layer for this feature
+        layer = getCanvasLayerByName(self.iface, "Buildings")
+        feature = getFeaturesByExpression(layer, '"X"=%s'%coord)
+        # get all attributes of the feature
+        l = feature.values()
+        # puting the ones needed in Additional info tab
+        self.lineEdit_T_People.setText(str(l[0][4]))
+        policemen = self.Main_table.selectedItems()[2].text()
+        self.lineEdit_Policemen.setText(str(policemen))
+
+
+    def createCSV(self):
+        with open(self.plugin_dir + '//SEND_REPORT//sentreport.csv', 'w') as report:
+            writer = csv.DictWriter(report,fieldnames=["Location","Total People","Evacuated People","Injured People","Ambulances","Policemen"])
+            writer.writeheader()
+
+
+    def sendReport(self):
+        csvfile = self.plugin_dir + '//SEND_REPORT//sentreport.csv'
+        with open(csvfile, 'a') as report:
+            writer = csv.writer(report)
+            # write data
+            location = self.Main_table.selectedItems()[0].text()
+            totalpeople = self.lineEdit_T_People.text()
+            evacuated = self.lineEdit_Evacuated.text()
+            injured = self.lineEdit_Injured.text()
+            ambulances = self.lineEdit_Ambulances.text()
+            policemen = self.lineEdit_Policemen.text()
+            writer.writerow([str(location),str(totalpeople),str(evacuated),str(injured), str(ambulances), str(policemen)])
 
 
 
