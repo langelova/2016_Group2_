@@ -96,6 +96,12 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
     def updateTable(self,values):
         self.Main_table.setHorizontalHeaderLabels(["Location","Priority","Officer at place"])
         self.Main_table.setRowCount(len(values))
+        rows = self.Main_table.rowCount()
+        columns = self.Main_table.columnCount()
+
+        #item = self.Main_table.cellWidget
+        #item.setFlags(QtCore.Qt.ItemIsEnabled)
+
         for i, item in enumerate(values):
             self.Main_table.setItem(i, 0, QtGui.QTableWidgetItem(str(item[0])))
             self.Main_table.setItem(i, 1, QtGui.QTableWidgetItem(str(item[1])))
