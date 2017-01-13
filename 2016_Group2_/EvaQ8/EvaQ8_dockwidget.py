@@ -70,6 +70,9 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.createCSV()
         self.Send_report.clicked.connect(self.sendReport)
 
+
+    # Push buttons
+
     def getPolice(self):
         # self.textEdit.setTextColor(QtGui.QColor.setblue(255))
         self.textEdit.setText('Police are on their way!')
@@ -105,6 +108,9 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         except:
             pass
 
+
+    # Load project
+
     def LoadLayers(self,filename=""):
         scenario_open = False
         scenario_file = self.plugin_dir+'/FINAL_DATA/EvaQ8_project.qgs'
@@ -128,6 +134,8 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
     def clearTable(self):
         self.Main_table.clear()
 
+
+    # Main table
 
     def getAttributes(self):
         layer = getCanvasLayerByName(self.iface, "Buildings")
@@ -160,6 +168,8 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.Main_table.itemSelectionChanged.connect(self.createReport)
 
 
+    # Additional information
+
     def getAdditionalInfo(self):
         items = self.Main_table.selectedItems()[0].text()
         next = items[1:-1]
@@ -183,7 +193,7 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
             # self.iface.mapCanvas().zoomOut()
 
 
-    # Report functions
+    # Report
 
     def createReport(self):
         items = self.Main_table.selectedItems()[0].text()
