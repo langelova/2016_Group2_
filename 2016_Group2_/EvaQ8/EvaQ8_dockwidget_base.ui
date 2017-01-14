@@ -63,6 +63,9 @@
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAsNeeded</enum>
         </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
         <property name="selectionMode">
          <enum>QAbstractItemView::SingleSelection</enum>
         </property>
@@ -74,6 +77,9 @@
         </property>
         <property name="gridStyle">
          <enum>Qt::SolidLine</enum>
+        </property>
+        <property name="sortingEnabled">
+         <bool>true</bool>
         </property>
         <property name="rowCount">
          <number>0</number>
@@ -183,7 +189,7 @@ Incident</string>
       <item>
        <widget class="QTabWidget" name="tabWidget">
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="Additional_Info">
          <attribute name="title">
@@ -191,7 +197,16 @@ Incident</string>
          </attribute>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_4">
+           <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0,0,0">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>5</number>
+            </property>
+            <property name="bottomMargin">
+             <number>9</number>
+            </property>
             <item>
              <widget class="QLabel" name="label_2">
               <property name="text">
@@ -275,6 +290,15 @@ Incident</string>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_2">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>9</number>
+            </property>
             <item>
              <widget class="QLabel" name="label_T_People">
               <property name="text">
