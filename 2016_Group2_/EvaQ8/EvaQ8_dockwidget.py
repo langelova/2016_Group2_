@@ -60,6 +60,7 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.LoadLayers()
         self.getAttributes()
         self.Send_Location.clicked.connect(self.sendLocation)
+        self.Send_Location.clicked.connect(self.policemen_send_location)
 
 
 
@@ -72,17 +73,29 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         # report
         self.createCSV()
         self.Send_report.clicked.connect(self.sendReport)
+        self.Send_report.clicked.connect(self.clear)
+
+        #disabled buttons if nothing selected
+        self.Send_Location.setDisabled(True)
+        self.Send_report.setDisabled(True)
+        self.Police.setDisabled(True)
+        self.Ambulance.setDisabled(True)
+
+        #enable if selection
+        self.Main_table.itemSelectionChanged.connect(self.Enable_buttons)
 
     def getPolice(self):
         # self.textEdit.setTextColor(QtGui.QColor.setblue(255))
         self.textEdit.setText('Police are on their way!')
-
         current_text = self.lineEdit_Policemen.text()
         if current_text == '':
             current_count = 0
         else:
             current_count = int(current_text)
+
         self.lineEdit_Policemen.setText(str(current_count + 1))
+
+
 
 
     def getAmbulance(self):
@@ -105,10 +118,9 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
             current_count = int(update_item.text())
             update_item.setText(str(current_count + 1))
             self.Main_table.setItem(current_row, 2, update_item)
+            self.Send_Location.setDisabled(True)
         except:
             pass
-
-
 
 
     def LoadLayers(self,filename=""):
@@ -153,8 +165,6 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         rows = self.Main_table.rowCount()
         columns = self.Main_table.columnCount()
 
-        #item = self.Main_table.cellWidget
-        #item.setFlags(QtCore.Qt.ItemIsEnabled)
 
         for i, item in enumerate(values):
             self.Main_table.setItem(i, 0, QtGui.QTableWidgetItem(str(item[0])))
@@ -168,6 +178,7 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         #set background color of selected row
         self.Main_table.setStyleSheet("QTableView {selection-background-color: red;}")
         self.Main_table.resizeRowsToContents()
+        self.Main_table.sortItems(1)
         self.Main_table.itemSelectionChanged.connect(self.Additional_info)
         self.Main_table.itemSelectionChanged.connect(self.createReport)
 
@@ -209,8 +220,7 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         l = feature.values()
         # puting the ones needed in Additional info tab
         self.lineEdit_T_People.setText(str(l[0][4]))
-        policemen = self.Main_table.selectedItems()[2].text()
-        self.lineEdit_Policemen.setText(str(policemen))
+
 
 
     def createCSV(self):
@@ -231,6 +241,29 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
             ambulances = self.lineEdit_Ambulances.text()
             policemen = self.lineEdit_Policemen.text()
             writer.writerow([str(location),str(totalpeople),str(evacuated),str(injured), str(ambulances), str(policemen)])
+            self.textEdit.setText('Report has been sent!')
+            self.Send_report.setDisabled(True)
+
+    def clear(self):
+        evacuated = self.lineEdit_Evacuated.setText("")
+        injured = self.lineEdit_Injured.setText("")
+        ambulances = self.lineEdit_Ambulances.setText("")
+        policemen = self.lineEdit_Policemen.setText("")
+
+    def policemen_send_location(self):
+        current_text = self.lineEdit_Policemen.text()
+        if current_text == '':
+            current_count = 0
+        else:
+            current_count = int(current_text)
+
+        self.lineEdit_Policemen.setText(str(current_count + 1))
+
+    def Enable_buttons(self):
+        self.Send_Location.setDisabled(False)
+        self.Send_report.setDisabled(False)
+        self.Police.setDisabled(False)
+        self.Ambulance.setDisabled(False)
 
 
 
