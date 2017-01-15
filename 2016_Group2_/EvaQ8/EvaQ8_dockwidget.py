@@ -63,7 +63,6 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.Send_Location.clicked.connect(self.policemen_send_location)
 
 
-
         #self.Navigation.clicked.connect(self.startnavigation)
         self.graph = QgsGraph()
         self.tied_points = []
@@ -74,6 +73,7 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.createCSV()
         self.Send_report.clicked.connect(self.sendReport)
         self.Send_report.clicked.connect(self.clear)
+        self.Send_report.clicked.connect(self.evacuated_building)
 
         #disabled buttons if nothing selected
         self.Send_Location.setDisabled(True)
@@ -243,6 +243,13 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
             writer.writerow([str(location),str(totalpeople),str(evacuated),str(injured), str(ambulances), str(policemen)])
             self.textEdit.setText('Report has been sent!')
             self.Send_report.setDisabled(True)
+
+
+    def evacuated_building(self):
+        row = self.Main_table.currentRow()
+        for i in range(0,3):
+            v = self.Main_table.item(row, i)
+            v.setBackground(QtGui.QColor(0, 255, 0))
 
     def clear(self):
         evacuated = self.lineEdit_Evacuated.setText("")
