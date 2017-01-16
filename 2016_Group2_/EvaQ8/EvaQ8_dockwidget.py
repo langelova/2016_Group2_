@@ -62,8 +62,9 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.Send_Location.clicked.connect(self.sendLocation)
         self.Send_Location.clicked.connect(self.policemen_send_location)
 
-
-        #self.Navigation.clicked.connect(self.startnavigation)
+        self.Main_table.itemSelectionChanged.connect(self.startNavigationOn)
+        self.Navigation.setDisabled(True)
+        self.Navigation.clicked.connect(self.startnavigation)
         self.graph = QgsGraph()
         self.tied_points = []
         self.roads_layer = getLegendLayerByName(self.iface, 'ROAD_NETWORK')
@@ -84,6 +85,67 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         #enable if selection
         self.Main_table.itemSelectionChanged.connect(self.Enable_buttons)
 
+    def startnavigation(self):
+        building_layer = getLegendLayerByName(self.iface, "Buildings")
+        police_stations_layer = getLegendLayerByName(self.iface, "POLICE_STATIONS")
+        routes_layer = getLegendLayerByName(self.iface, "Routes")
+        if routes_layer:
+            routes_layer.startEditing()
+            features = routes_layer.getFeatures()
+            ids = [feature.id() for feature in features]
+            routes_layer.deleteFeatures(ids)
+            routes_layer.commitChanges()
+        else:
+            routes_layer = createTempLayer('Routes', 'LINESTRING', building_layer.crs().postgisSrid(), ['id'], [QtCore.QVariant.Int])
+            loadTempLayer(routes_layer)
+
+        # get the building point, and the corresponding police station point
+        # destination is currently selected building:
+        building_id = self.Main_table.item(self.Main_table.currentRow(), 0).text()
+        # select building feature with these coordinates.(extracting only the floats)
+        building_coords = building_id[1:-1].split(',')
+        target_point = QgsPoint(float(building_coords[0]), float(building_coords[1]))
+        # origin is the current location or the police station
+        if self.current_location:
+            # get id of the currently selected building
+            origin_id = self.Main_table.item(self.current_location, 0).text()
+            origin_coords = origin_id[1:-1].split(',')
+            origin_point = QgsPoint(float(origin_coords[0]), float(origin_coords[1]))
+        else:
+            # select police station name from target building feature
+            origin_attribs = getFeaturesByListValues(building_layer, 'X', [float(building_coords[0])])
+            origin_id = origin_attribs.values()[0][9]
+            # select police station with that id
+            request = QgsFeatureRequest().setFilterExpression("\"name\" = '%s'" % origin_id)
+            iterator = police_stations_layer.getFeatures(request)
+            for feature in iterator:
+                origin_point = QgsPoint(feature.attribute('X'), feature.attribute('Y'))
+                break
+
+        # add these points to a list
+        new_points = [origin_point, target_point]
+        # build the graph, which returns the tied points. this is a list of points that are used to calculate routes.
+        self.graph, self.tied_points = makeUndirectedGraph(self.roads_layer, new_points)
+
+        # this next part calculates the route
+        origin = 0  # the first point in the new_points list
+        destination = 1  # the other point
+        path = calculateRouteDijkstra(self.graph, self.tied_points, origin, destination)
+        # store the route results in temporary layer called "Routes", with an id column
+        if path and routes_layer:
+            provider = routes_layer.dataProvider()
+            fet = QgsFeature()
+            fet.setGeometry(QgsGeometry.fromPolyline(path))
+            provider.addFeatures([fet])
+            provider.updateExtents()
+        self.canvas.refresh()
+        # keep this location as next origin
+        self.current_location = self.Main_table.currentRow()
+
+    def startNavigationOn(self):
+        self.Navigation.setDisabled(False)
+
+
     def getPolice(self):
         # self.textEdit.setTextColor(QtGui.QColor.setblue(255))
         self.textEdit.setText('Police are on their way!')
@@ -94,7 +156,6 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
             current_count = int(current_text)
 
         self.lineEdit_Policemen.setText(str(current_count + 1))
-
 
 
 
@@ -162,10 +223,6 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
     def updateTable(self,values):
         self.Main_table.setHorizontalHeaderLabels(["Location","Priority","Officer at place"])
         self.Main_table.setRowCount(len(values))
-        rows = self.Main_table.rowCount()
-        columns = self.Main_table.columnCount()
-
-
         for i, item in enumerate(values):
             self.Main_table.setItem(i, 0, QtGui.QTableWidgetItem(str(item[0])))
             self.Main_table.setItem(i, 1, QtGui.QTableWidgetItem(str(item[1])))
@@ -203,7 +260,7 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         if layer.selectedFeatureCount() > 0:
             self.iface.mapCanvas().setCurrentLayer(layer)
             self.iface.mapCanvas().zoomToSelected()
-            #self.iface.mapCanvas().zoomOut()
+
 
 
 # Report functions

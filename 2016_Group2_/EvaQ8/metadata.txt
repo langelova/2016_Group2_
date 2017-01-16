@@ -11,10 +11,10 @@ name=EvaQ8
 qgisMinimumVersion=2.0
 description=SDSS system helping police officers evacuate buildings.
 version=0.1
-author=Lilia Angelova
+author=Lilia Angelova, Maniuela Manolova, Danny Marx
 email=urb.lili.an@gmail.com
 
-about=This is a spatial decision support system designed to help the policemen evacuate buildings during fire incidents.
+about= This plugin is a Spatial Decision Support System designed as a project for course part of Master of Geomatics programme by TUDelft. It is developed to help policemen evacuate buildings during fire incidents.
 
 tracker=Uknown
 repository=https://github.com/langelova/2016_Group2_EvaQ8
@@ -26,7 +26,7 @@ repository=https://github.com/langelova/2016_Group2_EvaQ8
 # changelog=
 
 # Tags are comma separated with spaces allowed
-tags=
+tags= Fire, SDSS, GEO1005, policemen, TUDelft
 
 homepage=https://github.com/langelova/2016_Group2_EvaQ8
 category=Plugins
@@ -36,4 +36,5 @@ experimental=False
 
 # deprecated flag (applies to the whole plugin, not just a single version)
 deprecated=False
+
 
