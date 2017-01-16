@@ -97,6 +97,7 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
             routes_layer.commitChanges()
         else:
             routes_layer = createTempLayer('Routes', 'LINESTRING', building_layer.crs().postgisSrid(), ['id'], [QtCore.QVariant.Int])
+            routes_layer.loadNamedStyle("%s/FINAL_DATA/routes.qml" % self.plugin_dir)
             loadTempLayer(routes_layer)
 
         # get the building point, and the corresponding police station point
@@ -113,7 +114,7 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
             origin_point = QgsPoint(float(origin_coords[0]), float(origin_coords[1]))
         else:
             # select police station name from target building feature
-            origin_attribs = getFeaturesByListValues(building_layer, 'X', [float(building_coords[0])])
+            origin_attribs = self.getFeaturesWithValues(building_layer, 'X', [float(building_coords[0])])
             origin_id = origin_attribs.values()[0][9]
             # select police station with that id
             request = QgsFeatureRequest().setFilterExpression("\"name\" = '%s'" % origin_id)
@@ -141,6 +142,20 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         self.canvas.refresh()
         # keep this location as next origin
         self.current_location = self.Main_table.currentRow()
+        self.canvas.setExtent(routes_layer.extent())
+        self.canvas.zoomOut()
+        self.canvas.refresh()
+
+    def getFeaturesWithValues(self, layer, name, values=list):
+        features = {}
+        if layer:
+            if fieldExists(layer, name):
+                iterator = layer.getFeatures()
+                for feature in iterator:
+                    att = feature.attribute(name)
+                    if att in values:
+                        features[feature.id()] = feature.attributes()
+        return features
 
     def startNavigationOn(self):
         self.Navigation.setDisabled(False)
@@ -260,7 +275,7 @@ class EvaQ8DockWidget(QtGui.QDockWidget, FORM_CLASS):
         if layer.selectedFeatureCount() > 0:
             self.iface.mapCanvas().setCurrentLayer(layer)
             self.iface.mapCanvas().zoomToSelected()
-
+            self.canvas.zoomScale(1000.0)
 
 
 # Report functions
